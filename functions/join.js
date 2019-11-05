@@ -13,7 +13,10 @@ exports.handler = function(event, context, callback) {
 		let req = https.request({
 			hostname: url.hostname,
 			path: url.pathname,
-			method: "POST"
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			}
 		}, res => {
 			res.on("error", e => {
 				console.error(e);
