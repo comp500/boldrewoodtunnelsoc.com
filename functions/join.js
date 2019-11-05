@@ -19,6 +19,11 @@ exports.handler = function(event, context, callback) {
 				console.error(e);
 			});
 
+			res.setEncoding("utf8");
+			res.on("data", chunk => {
+			  console.log("Response: " + chunk);
+			});
+
 			res.on("end", () => {
 				callback(null, {
 					statusCode: 302,
