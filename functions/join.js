@@ -3,8 +3,14 @@ const { URL } = require("url");
 let url = new URL(process.env.JOIN_DISCORD_WEBHOOK);
 
 exports.handler = function(event, context, callback) {
-	let body = JSON.parse(event.body);
-	if (body.email && body.email.trim().length > 0) {
+	let body;
+	try {
+		body = JSON.parse(event.body);
+	} catch (e) {
+		console.log(event.body);
+		console.log(e);
+	}
+	if (body && body.email && body.email.trim().length > 0) {
 		let req = https.request({
 			hostname: url.hostname,
 			path: url.pathname,
