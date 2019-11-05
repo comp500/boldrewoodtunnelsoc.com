@@ -30,7 +30,7 @@
 
 	</div><!--header-->
 	<div id="container">
-		<form action="form.php" method="post">
+		<form action="/.netlify/functions/join/" method="post">
   		<input id="text-box" type="text" name="email" text-size="2.1em">@soton.ac.uk
 		<br>
 		<input type="submit" id="switch-button" value="JOIN">
@@ -46,5 +46,16 @@
 	<p id="centered">Boldrewood Tunnel: Not so much a myth as a legend</p>
 	<p id = "small">&#169;	2019 Boldrewood Tunnel Soc</p>
 	</div><!--footer-->
+
+	<script type="text/javascript">
+	if (location.search.includes("failed")) {
+		let warning = document.createElement("div");
+		let form = document.querySelector("form");
+		warning.innerText = "Failed to sign up!";
+		warning.style.fontSize = "20pt";
+		warning.style.color = "red";
+		form.parentElement.insertBefore(warning, form);
+	}
+	</script>
 </body>
 </html>
