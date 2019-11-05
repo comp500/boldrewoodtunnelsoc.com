@@ -10,7 +10,7 @@ body
 h3
 {
 	position: relative;
-	background:url('tunnel-sign.jpg');
+	background:url('./img/tunnel-sign.jpg');
 	background-size: 220px 220px;
 	background-repeat: no-repeat;
 	top: 20px;
@@ -25,7 +25,7 @@ h3
 	display: block;
 	height: 44px;
 	width: 100%;
-	background:url('burger.png') no-repeat 98%, center;
+	background:url('./img/burger.png') no-repeat 98%, center;
 	background-color: red;
 	color: white;
 	cursor: pointer;
@@ -162,7 +162,7 @@ h3
 {	
 	height: 300px;
 	top: 0;
-	background:url('tunnel.jpg');
+	background:url('./img/tunnel.jpg');
 	background-repeat: no-repeat;
     	background-size: 100% 100%;
 	background-position: center;
