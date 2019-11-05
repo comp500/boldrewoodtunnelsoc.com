@@ -4,11 +4,14 @@ let url = new URL(process.env.JOIN_DISCORD_WEBHOOK);
 
 exports.handler = function(event, context, callback) {
 	let email;
+	console.log(event.body);
 	event.body.split("&").forEach(part => {
+		console.log(part);
 		if (part.split("=")[0] == "email") {
 			email = decodeURIComponent(part.split("=")[1]);
 		}
 	});
+	console.log(email);
 	if (email && email.trim().length > 0) {
 		let req = https.request({
 			hostname: url.hostname,
