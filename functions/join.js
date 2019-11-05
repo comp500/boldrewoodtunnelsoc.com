@@ -3,14 +3,13 @@ const { URL } = require("url");
 let url = new URL(process.env.JOIN_DISCORD_WEBHOOK);
 
 exports.handler = function(event, context, callback) {
-	let body;
-	try {
-		body = JSON.parse(event.body);
-	} catch (e) {
-		console.log(event.body);
-		console.log(e);
-	}
-	if (body && body.email && body.email.trim().length > 0) {
+	let email;
+	event.body.split("&").forEach(part => {
+		if (part.split("=")[0] == "email") {
+			email = decodeURIComponent(part.split("=")[1]);
+		}
+	});
+	if (email && email.trim().length > 0) {
 		let req = https.request({
 			hostname: url.hostname,
 			path: url.pathname,
@@ -27,7 +26,7 @@ exports.handler = function(event, context, callback) {
 		});
 
 		req.write(JSON.stringify({
-			"content": "<@325680444974694410> New member signed up: `" + body.email.trim() + "@soton.ac.uk`"
+			"content": "<@325680444974694410> New member signed up: `" + email.trim() + "@soton.ac.uk`"
 		}));
 		req.end();
 	} else {
