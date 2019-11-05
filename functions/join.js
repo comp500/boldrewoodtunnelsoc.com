@@ -4,20 +4,21 @@ let url = new URL(process.env.JOIN_DISCORD_WEBHOOK);
 
 exports.handler = function(event, context, callback) {
 	let email;
-	console.log(event.body);
 	event.body.split("&").forEach(part => {
-		console.log(part);
 		if (part.split("=")[0] == "email") {
-			email = decodeURIComponent(part.split("=")[1]);
+			email = decodeURIComponent(part.split("=")[1].replace(/\+/g, "%20"));
 		}
 	});
-	console.log(email);
 	if (email && email.trim().length > 0) {
 		let req = https.request({
 			hostname: url.hostname,
 			path: url.pathname,
 			method: "POST"
 		}, res => {
+			res.on("error", e => {
+				console.error(e);
+			});
+
 			res.on("end", () => {
 				callback(null, {
 					statusCode: 302,
@@ -28,6 +29,9 @@ exports.handler = function(event, context, callback) {
 			});
 		});
 
+		req.on("error", e => {
+			console.error(e);
+		});
 		req.write(JSON.stringify({
 			"content": "<@325680444974694410> New member signed up: `" + email.trim() + "@soton.ac.uk`"
 		}));
