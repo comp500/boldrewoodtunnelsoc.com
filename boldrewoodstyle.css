@@ -69,7 +69,7 @@ nav li a
 	text-decoration: none;
 	text-align: center;
 	color: white;
-	padding: 14px 12px;
+	padding: 14px 16px;
 	background-color: rgba(255, 0, 0, 0.8);
 	border-bottom: 1px solid white;
 	text-transform: capitalize;
@@ -222,7 +222,7 @@ nav li a
 	display: block;
  	color: white;
   	text-align: center;
-  	padding: 14px 12px;
+  	padding: 14px 16px;
   	text-decoration: none;
 	font-size: 1.2em;
 	border-bottom: none;
@@ -406,7 +406,7 @@ nav li a
 	display: block;
  	color: white;
   	text-align: center;
-  	padding: 14px 12px;
+  	padding: 14px 16px;
   	text-decoration: none;
 	font-size: 1.2em;
 	border-bottom: none;
